@@ -9,16 +9,16 @@
 import SwiftUI
 
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-struct SkeletonModifier: ViewModifier {
+public struct SkeletonModifier: ViewModifier {
     let loading: Bool
     let overlayView: AnyView
     
-    init<ShapeType: Shape>(loading: Bool, shape: ShapeType, animation: Animation, gradient: Gradient) {
+    public init<ShapeType: Shape>(loading: Bool, shape: ShapeType, animation: Animation, gradient: Gradient) {
         self.loading = loading
         overlayView = AnyView(SkeletonView(shape:shape, animation: animation, gradient: gradient))
     }
     
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         Group {
             if loading {
                 content

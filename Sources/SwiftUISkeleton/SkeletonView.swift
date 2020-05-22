@@ -9,20 +9,20 @@
 import SwiftUI
 
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-struct SkeletonView<ShapeType: Shape>: View {
+public struct SkeletonView<ShapeType: Shape>: View {
     @State private var animationPosition: CGFloat = -1
     
     let shape: ShapeType
     let animation: Animation
     let gradient: Gradient
     
-    init(shape: ShapeType, animation: Animation, gradient: Gradient) {
+    public init(shape: ShapeType, animation: Animation, gradient: Gradient) {
         self.shape = shape
         self.gradient = gradient
         self.animation = animation
     }
     
-    var body: some View {
+    public var body: some View {
         shape
             .fill(self.gradientFill())
             .onAppear {
