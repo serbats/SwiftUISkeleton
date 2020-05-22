@@ -57,14 +57,20 @@ struct UsersView: View {
             SkeletonForEach( self.users, quantity: 2 ) {  user in
                 Text(user ?? "Test2")
                 .font(.system(size: 55, weight: .bold))
-                    .skeleton(with: self.users.isEmpty, shape: RoundedRectangle(cornerRadius: 15), animation: Animation.linear(duration: 1).repeatForever(autoreverses: true), gradient: Gradient(colors: [.blue, .yellow, .red, .blue]))
+                    .skeleton(with: self.users.isEmpty,
+                              shape: RoundedRectangle(cornerRadius: 15),
+                              animation: Animation.linear(duration: 1).repeatForever(autoreverses: true),
+                              gradient: Gradient(colors: [.blue, .yellow, .red, .blue]))
             }
             
             Text("Test3")
-            .skeleton(with: self.users.isEmpty, shape: RoundedRectangle(cornerRadius: 8))
+            .skeleton(with: self.users.isEmpty,
+                      shape: RoundedRectangle(cornerRadius: 8))
             
             Text("Test4")
-            .skeleton(with: self.users.isEmpty, shape: Rectangle(), gradient: Gradient(colors: [.red, .black, .white, .black, .red]))
+            .skeleton(with: self.users.isEmpty,
+                      shape: Rectangle(),
+                      gradient: Gradient(colors: [.red, .black, .white, .black, .red]))
             
             Button("fade") {
                 withAnimation(.easeInOut) {
