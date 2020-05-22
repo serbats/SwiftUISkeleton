@@ -42,23 +42,50 @@ SwiftUISkeleton gives easy way to animate loading of SwiftUI View.
 ### 
 
 ```swift
-import SkeletonUI
 import SwiftUI
+import SwiftUISkeleton
 
 struct UsersView: View {
-    @State var users = [String]()
-
+    @State var users: [String] = []
+    
     var body: some View {
-        Text("Finished requesting \(users.count) users!")
-            .skeleton(with: users.isEmpty)
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                    self.users = ["John Doe", "Jane Doe", "James Doe", "Judy Doe"]
+        VStack {
+            Text("Test1")
+                .font(.system(size: 15, weight: .bold))
+                .skeleton(with: self.users.isEmpty)
+            
+            SkeletonForEach( self.users, quantity: 2 ) {  user in
+                Text(user ?? "Test2")
+                .font(.system(size: 55, weight: .bold))
+                    .skeleton(with: self.users.isEmpty, shape: RoundedRectangle(cornerRadius: 15), animation: Animation.linear(duration: 1).repeatForever(autoreverses: true), gradient: Gradient(colors: [.blue, .yellow, .red, .blue]))
+            }
+            
+            Text("Test3")
+            .skeleton(with: self.users.isEmpty, shape: RoundedRectangle(cornerRadius: 8))
+            
+            Text("Test4")
+            .skeleton(with: self.users.isEmpty, shape: Rectangle(), gradient: Gradient(colors: [.red, .black, .white, .black, .red]))
+            
+            Button("fade") {
+                withAnimation(.easeInOut) {
+                    if self.users.isEmpty {
+                        self.users = ["John Doe",
+                                      "Jane Doe",
+                                      "James Doe",
+                                      "Judy Doe"]
+                    } else {
+                        self.users = []
+                    }
                 }
+            }
         }
     }
 }
 ```
+
+# Credits :speak_no_evil:
+
+SwiftUISkeleton is owned and maintained by [email](mailto:serbats@ukr.net).
 
 # License :mortar_board:
 
